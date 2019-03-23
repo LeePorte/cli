@@ -1,6 +1,8 @@
 package isolated
 
 import (
+	"regexp"
+
 	"code.cloudfoundry.org/cli/integration/helpers"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -27,6 +29,34 @@ var _ = Describe("set-label command", func() {
 
 				Eventually(session).Should(Exit(0))
 			})
+		})
+	})
+
+	When("the environment is set up correctly", func() {
+		var (
+			orgName   string
+			spaceName string
+			appName   string
+			username  string
+		)
+
+		BeforeEach(func() {
+			orgName = helpers.NewOrgName()
+			spaceName = helpers.NewSpaceName()
+			appName = helpers.PrefixedRandomName("app")
+
+			username, _ = helpers.GetCredentials()
+			helpers.SetupCF(orgName, spaceName)
+			helpers.WithHelloWorldApp(func(appDir string) {
+				Eventually(helpers.CF("push", appName, "-p", appDir)).Should(Exit(0))
+			})
+		})
+
+		FIt("sets the specified labels on the app", func() {
+			session := helpers.CF("set-label", "app", appName, "some-key=some-value", "some-other-key=some-other-value")
+			Eventually(session).Should(Say(regexp.QuoteMeta(`Setting label(s) for app %s in org %s / space %s as %s...`), appName, orgName, spaceName, username))
+			Eventually(session).Should(Say("OK"))
+			Eventually(session).Should(Exit(0))
 		})
 	})
 })
