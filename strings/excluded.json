@@ -346,6 +346,7 @@
     "csb",
     "default",
     "delete-user",
+    "find-user",
     "order-direction",
     "managers",
     "route-path",

@@ -79,7 +79,7 @@ var HelpCategoryList = []HelpCategory{
 	{
 		CategoryName: "USER ADMIN:",
 		CommandList: [][]string{
-			{"create-user", "delete-user"},
+			{"create-user", "delete-user", "find-user"},
 			{"org-users", "set-org-role", "unset-org-role"},
 			{"space-users", "set-space-role", "unset-space-role"},
 		},

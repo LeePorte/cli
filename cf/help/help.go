@@ -262,6 +262,7 @@ func newAppPresenter() appPresenter {
 				{
 					presentCommand("create-user"),
 					presentCommand("delete-user"),
+					presentCommand("find-user"),
 				}, {
 					presentCommand("org-users"),
 					presentCommand("set-org-role"),

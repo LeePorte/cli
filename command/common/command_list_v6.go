@@ -108,6 +108,7 @@ type commandList struct {
 	FeatureFlags                       v6.FeatureFlagsCommand                       `command:"feature-flags" description:"Retrieve list of feature flags with status"`
 	FeatureFlag                        v6.FeatureFlagCommand                        `command:"feature-flag" description:"Retrieve an individual feature flag with status"`
 	Files                              v6.FilesCommand                              `command:"files" alias:"f" description:"Print out a list of files in a directory or the contents of a specific file of an app running on the DEA backend"`
+	FindUser                           v6.FindUserCommand                           `command:"find-user" description:"Find a user"`
 	GetHealthCheck                     v6.GetHealthCheckCommand                     `command:"get-health-check" description:"Show the type of health check performed on an app"`
 	Help                               HelpCommand                                  `command:"help" alias:"h" description:"Show help"`
 	InstallPlugin                      InstallPluginCommand                         `command:"install-plugin" description:"Install CLI plugin"`
